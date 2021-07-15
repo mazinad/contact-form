@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+
+    form {
+      /* margin: 10%; */
+      width: 400px;
+      /* margin: 10% 40%; */
+    }
+
+    .container {
+      margin: 10% 30%;
+    }
+
+    textarea {
+      height: 300px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Name</label>
+        <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Name"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"
+          required>
+        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Subject</label>
+        <input type="text" class="form-control" id="subject" aria-describedby="emailHelp" placeholder="Subject"
+          required>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Message</label>
+        <textarea class="form-control" id="text" placeholder="Message" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  $('form').on('submit', (e) => {
+    e.preventDefault();
+    const name = $('#name').val().trim()
+    const send = $('#email').val().trim()
+    const subject = $('#subject').val().trim()
+    const text = $('#text').val().trim()
+    const data = {
+      name,
+      send,
+      subject,
+      text
+    };
+    $.post('/email', data, function () {
+      console.log('We recieved the data')
+    });
+
+  });
+</script>
